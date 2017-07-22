@@ -154,7 +154,7 @@ class my_build_ext(build_ext):
 
 setup(
     name='JPype-py2',
-    version='0.5.7',
+    version='0.5.8',
     description="A Python-Java bridge focusing on stability for Python 2.7."
 	" Fork of the jPype project by"
     " Steve Menard (http://jpype.sourceforge.net/), with the"
