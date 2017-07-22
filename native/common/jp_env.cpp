@@ -15,6 +15,7 @@
    
 *****************************************************************************/   
 #include <jpype.h>
+#include <Python.h>
 
 namespace { // impl details
 	 HostEnvironment* s_Host = NULL;
@@ -191,6 +192,8 @@ JPCleaner::JPCleaner()
 
 JPCleaner::~JPCleaner()
 {
+	PyGILState_STATE state = PyGILState_Ensure();
+
 //AT's comments on porting:
 // A variety of Unix compilers do not allow redifinition of the same variable in "for" cycless
 	vector<jobject>::iterator cur;
@@ -208,6 +211,8 @@ JPCleaner::~JPCleaner()
 	{
 		(*cur2)->release();
 	}
+
+	PyGILState_Release(state);
 }
 
 void JPCleaner::addGlobal(jobject obj)
