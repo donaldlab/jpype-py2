@@ -153,18 +153,22 @@ class my_build_ext(build_ext):
         build_ext.build_extensions(self)
 
 setup(
-    name='JPype1',
+    name='JPype-py2',
     version='0.5.7',
-    description='A Python to Java bridge.',
+    description="A Python-Java bridge focusing on stability for Python 2.7."
+	" Fork of the jPype project by"
+    " Steve Menard (http://jpype.sourceforge.net/), with the"
+    " modifications from the v0.5 series applied by Luis Nell"
+    " (https://github.com/originell/jpype)",
     long_description=(read_utf8('README.rst') + '\n\n' +
                       read_utf8('doc/CHANGELOG.rst') + '\n\n' +
                       read_utf8('AUTHORS.rst')),
     license='License :: OSI Approved :: Apache Software License',
     author='Steve Menard',
     author_email='devilwolf@users.sourceforge.net',
-    maintainer='Luis Nell',
-    maintainer_email='cooperate@originell.org',
-    url='https://github.com/originell/jpype/',
+    maintainer='Jeff Martin',
+    maintainer_email='jmartin@cs.duke.edu',
+    url='https://github.com/donaldlab/jpype-py2',
     platforms=[
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows :: Windows 7',
@@ -173,7 +177,6 @@ setup(
     ],
     classifiers=[
         'Programming Language :: Java',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
     ],
     packages=[
