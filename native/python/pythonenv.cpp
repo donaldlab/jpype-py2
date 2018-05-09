@@ -414,6 +414,30 @@ PyObject* PythonException::getJavaException()
 	return retVal;
 }
 
+string PythonException::getMessage()
+{
+     string message = "";
+
+     // Exception class name
+     PyObject* className = JPyObject::getAttrString(m_ExceptionClass, "__name__");
+     message += JPyString::asString(className);
+     Py_DECREF(className);
+
+     // Exception value
+     if(m_ExceptionValue)
+     {
+          // Convert the exception value to string
+          PyObject* pyStrValue = PyObject_Str(m_ExceptionValue);
+          if(pyStrValue)
+          {
+               message += ": " + JPyString::asString(pyStrValue);
+               Py_DECREF(pyStrValue);
+          }
+     }
+
+     return message;
+}
+
 PyObject* JPyCObject::fromVoid(void* data, void (*destr)(void *))
 {
 	PY_CHECK( PyObject* res = PyCObject_FromVoidPtr(data, destr) );
